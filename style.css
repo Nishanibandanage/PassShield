@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+:root{
+    --global-background-color: #f5f4f7;
+    --checker-background-color: #070215;
+    --global-text-color: lightblue; 
+}
+
+html, body{
+    background-color: var(--global-background-color);
+    color: var(--global-text-color);
+    display: grid;
+    height: 100%;
+    place-items: center;
+    text-align: center;
+}
+
+.container{
+    width: 400px;
+    /* height: 300px; */
+    padding: 20px 30px;
+    border-radius: 5px;
+    justify-content: center;
+    background-color: var(--checker-background-color);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.container header{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 40px;
+}
+
+.container form{
+    max-resolution: 20px 30px;
+}
+
+form .field{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+form .field input{
+    width: 100%;
+    height: 100%;
+    border: 1px solid lightskygray;
+    margin: 10px auto;
+    padding-left: 15px;
+    outline: none;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: all 0.3s;
+
+}
+
+form .field input:focus{
+    border-color: #090a0a;
+    box-shadow: inset 0 0 3px #0d0f0e;
+
+}
+
+form .field .showButton{
+    position: absolute;
+    right: 10px;
+    top: 80%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color:var(--checker-background-color);
+    display: none;
+}
+
+form .checker{
+    margin: 20px 0;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: none;
+}
+
+form .checker span{
+    width: 100%;
+    height: 100%;
+    background: lightblue;
+    border-radius: 5px;
+    position: relative;
+}
+
+form .checker span.medium{
+    margin: 0 10px;
+}
+
+form .checker span:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+form .checker span.active.weak:before{
+    background-color: red;
+}
+
+form .checker span.active.medium:before{
+    background-color: orange;
+}
+
+form .checker span.active.strong:before{
+    background-color: green;
+}
+
+form .decision{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: -10px;
+    display: none;
+}
+
+form .decision.weak{
+    color: red;
+}
+
+form .decision.medium{
+    color: orange;
+}
+
+form .decision.strong{
+    color: green;
+}
+

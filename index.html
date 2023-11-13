@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PassShield Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header> PassShield Checker</header>
+        <form action="">
+            <div class="field">
+                <input onkeyup="trigger()" type="decision" placeholder="Type Password Here">
+                <span class="showButton"> Show</span>
+                <!-- <input type="submit" value="Ckeck"> -->
+            </div>
+
+            <div class="checker">
+                <span class="weak"></span>
+                <span class="medium"></span>
+                <span class="strong"></span>
+            </div>
+
+            <div class="decision">  </div>
+        </form>
+    </div>
+
+    <script>
+        const checker = document.querySelector(".checker");
+        const input = document.querySelector("input");
+        const weak = document.querySelector(".weak");
+        const medium = document.querySelector(".medium");
+        const strong = document.querySelector(".strong");
+        const decision = document.querySelector(".decision");
+        const showButton = document.querySelector(".showButton");
+
+        let regExpWeak = /[a-z]/;
+        let regExpMedium = /\d+/;
+        let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,(,)]/
+
+        function trigger(){
+            if(input.value != "" ){
+                checker.style.display = "block";
+                checker.style.display = "flex";
+
+                if(input.value.length <8 && (input.value.match(regExpWeak) || input.value.match(regExpMedium) || input.value.match(regExpStrong)))no=1;
+                if(input.value.length >=8 && ((input.value.match(regExpWeak) && input.value.match(regExpMedium)) || (input.value.match(regExpMedium) && input.value.match(regExpStrong)) || (input.value.match(regExpWeak) && input.value.match(regExpStrong)) ))no=2;
+                if(input.value.length >=8 && input.value.match(regExpWeak) && input.value.match(regExpMedium) && input.value.match(regExpStrong))no=3;
+
+                if(no==1){
+                    weak.classList.add("active");
+                    decision.style.display = "block";
+                    decision.textContent = " Your password is too week";
+                    decision.classList.add("weak");
+                }
+
+                if(no==2){
+                    medium.classList.add("active");
+                    decision.textContent = " Your password is medium";
+                    decision.classList.add("medium");
+                }else{
+                    medium.classList.remove("active");
+                    decision.classList.remove("medium");
+
+                }
+
+                if(no==3){
+                    medium.classList.add("active");
+                    strong.classList.add("active");
+                    decision.textContent = " Your password is strong";
+                    decision.classList.add("strong");
+                }else{
+                    strong.classList.remove("active");
+                    decision.classList.remove("strong");
+                    
+                }
+
+                showButton.style.display = "block";
+                showButton.onclick = function(){
+                    if(input.type == "password"){
+                        input.type = "decision";
+                        showButton.textContent = "Show";
+
+                    }else{
+                        input.type = "password";
+                        showButton.textContent = "Hide"
+                    }
+                }
+
+            }else{
+                checker.style.display = "none";
+                decision.style.display = "none";
+                
+
+            }
+        }
+    </script>
+
+    
+</body>
+</html>
